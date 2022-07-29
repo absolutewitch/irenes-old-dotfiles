@@ -1,0 +1,11 @@
+# ~/.config/starship.toml
+
+# Use custom format
+format = """> [ArsNotoria [](#ffdc3c) ](#90b8d0) $directory > """
+
+# Disable the blank line at the start of the prompt
+add_newline = false 
+
+# Line break
+[line_break]
+disabled = false 
