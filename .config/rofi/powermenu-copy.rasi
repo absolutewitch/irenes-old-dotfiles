@@ -1,0 +1,123 @@
+//colors
+* {
+    grave: #26272f;
+    lgrave: #4b4454;
+    peach: #e1a9a5;
+}
+
+configuration {
+    font:                           "Noto Sans Regular 10";
+    show-icons:                     false;
+    icon-theme: 		    "Qogir";
+    scroll-method:                  0;
+    disable-history:                false;
+    sidebar-mode: 		    false;
+}
+
+window {
+    background-color:               @grave;
+    border:                         0;
+    padding:                        10;
+    transparency:                   "real";
+    width:                          120px;
+    location:                       east;
+    y-offset:                       341;
+    x-offset:	                    -7;
+}
+listview {
+    lines:                          6;
+    columns:                        1;
+    scrollbar:                     false;
+}
+element {
+    border:  0;
+    padding: 1px ;
+    background-color: @grave;
+    text-color:       @peach;
+}
+element-text {
+    background-color: @grave;
+    text-color:       @peach;
+}
+element.normal.normal {
+    background-color: @grave;
+    text-color:       @peach;
+}
+element.normal.urgent {
+    background-color: @grave;
+    text-color:       @peach;
+}
+element.normal.active {
+    background-color: @grave;
+    text-color:       @peach;
+}
+element.selected.normal {
+    background-color: @lgrave;
+    text-color:       @peach;
+}
+element.selected.urgent {
+    background-color: @grave;
+    text-color:       @peach;
+}
+element.selected.active {
+    background-color: @lgrave;
+    text-color:       @peach;
+}
+element.alternate.normal {
+    background-color: @grave;
+    text-color:       @peach;
+}
+element.alternate.urgent {
+    background-color: @grave;
+    text-color:       @peach;
+}
+element.alternate.active {
+    background-color: @grave;
+    text-color:       @peach;
+}
+scrollbar {
+    width:        4px ;
+    border:       0;
+    handle-color: @peach;
+    handle-width: 8px ;
+    padding:      0;
+}
+mode-switcher {
+    border:       2px 0px 0px ;
+    border-color: @grave;
+}
+button {
+    spacing:    0;
+    text-color: @peach;
+}
+button.selected {
+    background-color: @lgrave;
+    text-color:       @peach;
+}
+inputbar {
+    spacing:    0;
+    text-color: @peach;
+    padding:    1px ;
+}
+case-indicator {
+    spacing:    0;
+    text-color: @peach;
+}
+entry {
+    spacing:    0;
+    text-color: @peach;
+}
+prompt {
+    spacing:    0;
+    text-color: @peach;
+}
+inputbar {
+    children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+}
+textbox-prompt-colon {
+    expand:     false;
+    str:        ":";
+    margin:     0px 0.3em 0em 0em ;
+    text-color: @peach;
+}
+

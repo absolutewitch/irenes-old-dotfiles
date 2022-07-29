@@ -1,0 +1,71 @@
+//colors
+* {
+    grave: #26272f;
+    lgrave: #4b4454;
+    peach: #e1a9a5;
+}
+
+configuration {
+    font:                           "Noto Sans Regular 10";
+    show-icons:                     false;
+    icon-theme: 		    "Qogir";
+    scroll-method:                  0;
+    disable-history:                false;
+    sidebar-mode: 		    false;
+}
+
+window {
+    children:                       [ listview ];
+    background-color:               @grave;
+    border:                         0;
+    padding:                        10;
+    transparency:                   "real";
+    width:                          120px;
+    location:                       east;
+    y-offset:                       340;
+    x-offset:	                    -7;
+    border-radius:                  10;
+}
+listview {
+    lines:                          7;
+    columns:                        1;
+    scrollbar:                     false;
+}
+element {
+    border:  0;
+    padding: 1px ;
+    background-color: @grave;
+    text-color:       @peach;
+}
+element-text {
+    background-color: @grave;
+    text-color:       @peach;
+}
+element.normal.normal {
+    background-color: @grave;
+    text-color:       @peach;
+}
+element.selected.active {
+    background-color: @lgrave;
+    text-color:       @peach;
+}
+scrollbar {
+    width:        4px ;
+    border:       0;
+    handle-color: @peach;
+    handle-width: 8px ;
+    padding:      0;
+}
+button {
+    spacing:    0;
+    text-color: @peach;
+}
+button.selected {
+    background-color: @lgrave;
+    text-color:       @peach;
+}
+case-indicator {
+    spacing:    0;
+    text-color: @peach;
+}
+
