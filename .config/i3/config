@@ -1,0 +1,235 @@
+#
+#
+# 
+#    _____                     _       _ ____                     __ _       
+#   |_   _|                   ( )     (_)___ \                   / _(_)      
+#     | |  _ __ ___ _ __   ___|/ ___   _  __) |   ___ ___  _ __ | |_ _  __ _ 
+#     | | | '__/ _ \ '_ \ / _ \ / __| | ||__ <   / __/ _ \| '_ \|  _| |/ _` |
+#    _| |_| | |  __/ | | |  __/ \__ \ | |___) | | (_| (_) | | | | | | | (_| |
+#   |_____|_|  \___|_| |_|\___| |___/ |_|____/   \___\___/|_| |_|_| |_|\__, |
+#                                                                      __/ |
+#                                                                     |___/ 
+#  
+#
+# Check out https://i3wm.org/docs/userguide.html for help if needed! ♥
+#
+#
+#
+
+
+#  GENERAL i3 SETTINGS 
+#
+# ------------------------------------------------------------ ♥
+# Set mod key.
+set $mod Mod4
+
+# Set border size.
+for_window [class="^.*"] border pixel 0
+
+# Set border colors.
+# class                 border  backgr. text    indicator child_border
+client.focused          #26272f #285577 #ffffff #2e9ef4   #4b4454
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+
+client.background       #ffffff
+
+# Hide borders when there's only one window active.
+hide_edge_borders smart
+
+# Set inner/outer gaps.
+gaps inner 4
+gaps outer 3
+gaps bottom 33
+# ------------------------------------------------------------ ♥
+
+
+#  KEYBINDS 
+#
+# ------------------------------------------------------------ ♥
+# Rofi.
+bindsym $mod+d exec --no-startup-id rofi -show drun
+
+# Use Mouse+$mod to drag floating windows to their wanted position.
+floating_modifier $mod
+
+# Start Alacritty.
+bindsym $mod+Return exec alacritty
+
+# Kill focused window.
+bindsym $mod+q kill
+
+#  I personally hate using 
+#  h,j,k,l so i use mostly
+#  the arrow keys to control
+#  windows and the WM.
+
+# Change focus.
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# Move focused window.
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# Enter fullscreen mode.
+bindsym $mod+f fullscreen toggle
+
+# Change layout mode.
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+# Toggle tiling/floating mode.
+bindsym $mod+Shift+space floating toggle
+
+# Change focus between tiling/floating windows.
+bindsym $mod+space focus mode_toggle
+
+# Define names for default workspaces.
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+
+# Switch to workspace.
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+
+# Move focused window to workspace.
+#  container = window
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+
+# Reload the config file.
+bindsym $mod+Shift+c reload
+
+# Restart i3 inplace.
+bindsym $mod+Shift+r restart
+
+# Resize window mode.
+mode "resize" {
+        #  These bindings trigger as soon as you enter the resize mode.
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # Back to normal: 
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+# Lock the screen.
+bindsym $mod+l exec i3lock -i .config/i3/lock.png -p default -n
+
+# Take a screenshot.
+bindsym $mod+p exec flameshot gui
+# ------------------------------------------------------------ ♥
+
+
+#  START PROGRAMS ON BOOT 
+#
+# ------------------------------------------------------------ ♥
+# Picom.
+exec_always --no-startup-id picom -b --config .config/picom.conf
+
+# Feh wallpaper.
+exec --no-startup-id feh --bg-fill .config/i3/background.png
+
+# Polkit
+exec --no-startup-id /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+
+# Flameshot.
+exec --no-startup-id sleep 2 && flameshot
+
+# Polybar (bash script).
+#  for this to work, you need to do           
+#  chmod +x $HOME/.config/polybar/launch.sh   
+#  to make the launch.sh file executable      
+exec --no-startup-id .config/polybar/launch.sh
+
+# Discord.
+exec --no-startup-id sleep 2 && discord 
+
+# Alacritty.
+exec --no-startup-id sleep 2 && alacritty
+
+# Firefox.
+exec --no-startup-id sleep 2 && firefox
+
+# Thunar.
+exec --no-startup-id sleep 2 && thunar
+# ------------------------------------------------------------ ♥
+
+
+#  ASSIGN PROGRAM TO WORKSPACE   
+#
+# ------------------------------------------------------------ ♥
+#  (to check [class=] do xprop | grep CLASS 
+#  in a terminal and then click on a window)
+# Alacritty.
+assign [class="alacritty"] $ws1
+
+# Firefox.
+assign [class="firefox"] $ws2
+
+# Thunar.
+assign [class="Thunar"] $ws3
+
+# Discord.
+assign [class="discord"] $ws4
+
+# Telegram.
+assign [class="telegram"] $ws4
+
+# Tlauncher.
+assign [class="org-tlauncher-tlauncher-rmo-TLauncher"] $ws5
+
+# Minecraft.
+assign [class="Minecraft* 1.19"] &ws5
+
+# ------------------------------------------------------------ ♥
+
+
+#  SET WINDOW RULES 
+#
+# ------------------------------------------------------------ ♥
+# Pavucontrol enable floating.
+for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
+# Gparted enable floating.
+for_window [class="Gparted" instance="gparted"] floating enable
+# ------------------------------------------------------------ ♥
+
+
+#
+#                                                   ...You've reached the end.
+#
